@@ -5,7 +5,10 @@ const axios      = require("axios");
 const crypto     = require("crypto");
 require("dotenv").config({ path:"../.env" });
 
-// Support both local (VITE_ prefix) and Render (no prefix) env vars
+const app = express();
+app.use(cors());
+app.use(express.json());
+
 const API_KEY       = process.env.CIRCLE_API_KEY       || process.env.VITE_CIRCLE_API_KEY;
 const WALLET_ID     = process.env.CIRCLE_WALLET_ID     || process.env.VITE_CIRCLE_WALLET_ID;
 const ENTITY_SECRET = process.env.ENTITY_SECRET        || process.env.VITE_ENTITY_SECRET;
