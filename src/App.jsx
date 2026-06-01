@@ -42,7 +42,7 @@ async function circlePost(path, body) {
 
 async function fetchBalance() {
   try {
-    const BACKEND = import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
+    const BACKEND = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
     const res = await fetch(BACKEND + "/balance");
     const data = await res.json();
     return parseFloat(data.usdc || 0);
@@ -119,7 +119,7 @@ function useAgentEconomy() {
   // ── MAKE REAL PAYMENT via Circle API ──
   async function makeCirclePayment(agent, api) {
     try {
-      const res = await fetch("http://localhost:3001/send", {
+      const res = await fetch(import.meta.env.VITE_BACKEND_URL + "/send" || "http://localhost:3001/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: api.pricePerCall.toFixed(6) }),
