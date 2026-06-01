@@ -42,7 +42,7 @@ async function circlePost(path, body) {
 
 async function fetchBalance() {
   try {
-    const BACKEND = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
+    const BACKEND = import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
     const res = await fetch(BACKEND + "/balance");
     const data = await res.json();
     return parseFloat(data.usdc || 0);
